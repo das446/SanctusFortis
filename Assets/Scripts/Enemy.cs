@@ -10,7 +10,7 @@ namespace SanctusFortis {
 		public float speed=1;
 
 		void Update() {
-			transform.position = Vector2.MoveTowards(transform.position, Player.player.transform.position,speed*Time.deltaTime);
+			Move();
 		}
 
 		public void GetHit(int damage) {
@@ -22,6 +22,10 @@ namespace SanctusFortis {
 
 		private void Die() {
 			Destroy(gameObject);
+		}
+
+		void Move(){
+			transform.position = Vector2.MoveTowards(transform.position, Player.player.transform.position,speed*Time.deltaTime);
 		}
 	}
 }

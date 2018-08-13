@@ -23,7 +23,7 @@ namespace SanctusFortis {
 			gameObject.SetActive(true);
 			RaycastHit2D hit = Physics2D.Raycast(transform.position, Player.player.transform.right,length,1<<11);
 			hit.collider?.gameObject?.GetComponent<Enemy>()?.GetHit(10);
-			this.Invoke(PutAway, 0.25f);
+			this.DoAfterTime(PutAway, 0.25f);
 			//test
 		}
 

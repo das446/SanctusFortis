@@ -50,7 +50,9 @@ namespace SanctusFortis {
 			} else if (Input.GetKeyUp(KeyCode.DownArrow) && shielding) {
 				StopShielding();
 			}
+
 			Move();
+
 			if (CanJump() && Input.GetKeyDown(KeyCode.UpArrow)) {
 				Jump();
 			}
@@ -111,6 +113,11 @@ namespace SanctusFortis {
 		}
 
 		void Shield() {
+			if(!shielding){
+				Vector2 v = rb.velocity;
+				v.x/=2;
+				rb.velocity = v;
+			}
 			shielding = true;
 			sprite.color = Color.blue;
 		}
@@ -125,7 +132,10 @@ namespace SanctusFortis {
 		}
 
 		public void Move() {
-			float x = CanMove() ? Input.GetAxis("Horizontal") : 0;
+			float x =Input.GetAxis("Horizontal");
+			if(shielding){
+				return;
+			}
 			Vector2 v = rb.velocity;
 			v.x = Vector2.right.x * x * speed;
 			rb.velocity = v;
@@ -149,7 +159,7 @@ namespace SanctusFortis {
 
 		public void LoseHealth(int v) {
 			health -= v;
-			if (v <= 0) {
+			if (health <= 0) {
 				Die();
 			}
 
