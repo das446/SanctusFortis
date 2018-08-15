@@ -9,9 +9,6 @@ namespace SanctusFortis {
 		public int health;
 		public float speed=1;
 
-		void Update() {
-			Move();
-		}
 
 		public void GetHit(int damage) {
 			health -= damage;
@@ -20,12 +17,10 @@ namespace SanctusFortis {
 			}
 		}
 
-		private void Die() {
+		protected void Die() {
 			Destroy(gameObject);
 		}
 
-		void Move(){
-			transform.position = Vector2.MoveTowards(transform.position, Player.player.transform.position,speed*Time.deltaTime);
-		}
+		
 	}
 }

@@ -23,10 +23,12 @@ namespace SanctusFortis {
 		bool shielding = false;
 		public SpriteRenderer sprite;
 		public static Player player;
+		public BoxCollider2D col;
 
 		void Start() {
 			this.InvokeRepeatingWhile(RepeatHeal, 1, () => health > 0);
-			player=this;
+			player = this;
+			col = GetComponent<BoxCollider2D>();
 
 		}
 
@@ -80,12 +82,8 @@ namespace SanctusFortis {
 			rb.velocity = v;
 			Vector3 r = transform.eulerAngles;
 			r.z = flipped ? 180 : 0;
-			r.y=r.y+180;
-			transform.eulerAngles=r;
-
-			
-
-			
+			r.y = r.y + 180;
+			transform.eulerAngles = r;
 
 		}
 
@@ -113,9 +111,9 @@ namespace SanctusFortis {
 		}
 
 		void Shield() {
-			if(!shielding){
+			if (!shielding) {
 				Vector2 v = rb.velocity;
-				v.x/=2;
+				v.x /= 2;
 				rb.velocity = v;
 			}
 			shielding = true;
@@ -132,18 +130,30 @@ namespace SanctusFortis {
 		}
 
 		public void Move() {
-			float x =Input.GetAxis("Horizontal");
-			if(shielding){
+			float x = Input.GetAxis("Horizontal");
+			if (shielding) {
 				return;
 			}
-			Vector2 v = rb.velocity;
-			v.x = Vector2.right.x * x * speed;
-			rb.velocity = v;
+
+			if (!Wall(x)) {
+				Vector2 v = rb.velocity;
+				v.x = Vector2.right.x * x * speed;
+				rb.velocity = v;
+			}
 			if (x != 0) {
 				Vector3 r = transform.eulerAngles;
 				r.y = x > 0 != flipped ? 0 : 180;
 				transform.eulerAngles = r;
 			}
+		}
+
+		private bool Wall(float x) {
+
+			return false; //until I get it working
+
+			Vector2 dir = x > 0 ? Vector2.right : Vector2.left;
+
+			return Physics2D.BoxCast(transform.position,col.size,0,dir,0.5f,1<<9);
 		}
 
 		private bool CanMove() {
@@ -154,8 +164,6 @@ namespace SanctusFortis {
 			Vector2 v = transform.up;
 			rb.AddForce(v * jumpForce);
 		}
-
-		
 
 		public void LoseHealth(int v) {
 			health -= v;
