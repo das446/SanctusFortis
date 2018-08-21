@@ -11,12 +11,12 @@ namespace SanctusFortis {
 
 	public static class ExtensionMethods {
 
-		public static void Invoke(this MonoBehaviour control, Action coroutine, float time) {
+		public static void DoAfterTime(this MonoBehaviour control, Action coroutine, float time) {
 
 			control.StartCoroutine(MakeInvokedCoroutine(coroutine, time));
 		}
 
-		public static void Invoke(this MonoBehaviour control, Action coroutine, float time, Func<bool> cond) {
+		public static void DoAfterTimeIf(this MonoBehaviour control, Action coroutine, float time, Func<bool> cond) {
 
 			control.StartCoroutine(MakeInvokedCoroutine(coroutine, time, cond));
 		}
@@ -24,6 +24,13 @@ namespace SanctusFortis {
 		public static void InvokeRepeatingWhile(this MonoBehaviour control, Action coroutine, float time, Func<bool> cond) {
 
 			control.StartCoroutine(MakeInvokedCoroutineRepeating(coroutine, time, cond));
+		}
+
+		public static void DoXTimes(this MonoBehaviour m,Action f, int amnt){
+			for (int i = 0; i < amnt; i++)
+			{
+				f();
+			}
 		}
 
 		static IEnumerator MakeInvokedCoroutine(Action coroutine, float time) {

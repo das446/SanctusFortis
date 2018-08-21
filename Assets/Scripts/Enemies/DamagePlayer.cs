@@ -9,7 +9,6 @@ namespace SanctusFortis {
 		public bool destroyOnHit;
 
 		private void OnCollisionEnter2D(Collision2D other) {
-			Debug.Log("test");
 			Player p = other.gameObject.GetComponent<Player>();
 			if (p != null) {
 				p.TakeDamage(amnt);

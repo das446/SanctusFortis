@@ -26,9 +26,11 @@ public class MoveCamera : MonoBehaviour {
 	// Update is called once per frame
 	void Update ()
     {
-        float prevX = transform.position.x;
+        
         if (Target == null) { Target = GameObject.FindObjectOfType<Player>().gameObject; }
         if (Target == null) { return; }
+        
+        float prevX = transform.position.x;
         Vector3 target = Target.transform.position + Offset;
         if (target.x - transform.position.x > maxX)
         {
@@ -49,9 +51,9 @@ public class MoveCamera : MonoBehaviour {
         //Adjust To World Bounds
 
         if (transform.position.x < WorldMinX) { transform.position = transform.position.setX(WorldMinX); }
-        if (transform.position.x > WorldMaxX) { transform.position = transform.position.setX(WorldMaxX); }
+        else if (transform.position.x > WorldMaxX) { transform.position = transform.position.setX(WorldMaxX); }
         if (transform.position.y < WorldMinY) { transform.position = transform.position.setY(WorldMinY); }
-        if (transform.position.y > WorldMaxY) { transform.position = transform.position.setY(WorldMaxY); }
+        else if (transform.position.y > WorldMaxY) { transform.position = transform.position.setY(WorldMaxY); }
 
         //MoveBackground(prevX);
 

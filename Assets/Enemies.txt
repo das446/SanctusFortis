@@ -1,0 +1,34 @@
+Harpies:
+	Stays in place then dives towards
+	Animations:
+		Idle,
+		Diving,
+		
+	
+Gorgon:
+	Shoots eye beams projectiles / constant lazer 
+	Tries to stay away from player
+	Animations:
+		L shaped with tail instead of legs
+		Idle,
+		Moving,
+		Shooting with startup
+
+Skeleton:
+	Runs towads player / walks back and forth with sword
+	
+	Animations:
+	Make tharm with sword and arm with shield their own sprites
+	Holding up shield
+	Swinging sword
+	
+		
+	
+Boss:
+	Cerberus
+		Breath fire
+		Jumps
+	Losing enough health kills one of it's heads
+	
+	Thanatos
+		flies around with scythe
