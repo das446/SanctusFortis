@@ -10,6 +10,7 @@ namespace SanctusFortis {
 		bool right;
 
 		private void Start() {
+			base.Start();
 			if (walkOff) {
 				GetComponent<SpriteRenderer>().color = Color.gray;
 			}

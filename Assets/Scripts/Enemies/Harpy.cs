@@ -6,6 +6,7 @@ namespace SanctusFortis {
 	public class Harpy : Enemy {
 
 		void Start() {
+			base.Start();
 			StartCoroutine(Dive());
 
 		}
@@ -16,11 +17,14 @@ namespace SanctusFortis {
 
 		IEnumerator Dive() {
 			while (true) {
+				
 				yield return new WaitForSeconds(10);
-				float time = 5;
-				Vector2 target = Player.player.transform.position;
+				float time = 4;
+				Vector3 target = Player.player.transform.position;
+				Vector3 dir = transform.position - target;
+				dir = dir.normalized*speed;
 				while (time > 0) {
-					transform.position = Vector2.MoveTowards(transform.position, target, speed * Time.deltaTime);
+					transform.position-=dir*Time.deltaTime;
 					time -= Time.deltaTime;
 					yield return new WaitForEndOfFrame();
 				}

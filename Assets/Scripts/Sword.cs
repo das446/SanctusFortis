@@ -7,7 +7,7 @@ namespace SanctusFortis {
 	public class Sword : MonoBehaviour {
 
 		public Transform target;
-		public float length = 0.3f;
+		public float length = 3;
 
 		private void Update()
 		{
