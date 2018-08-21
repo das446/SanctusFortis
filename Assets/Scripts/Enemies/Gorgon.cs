@@ -15,7 +15,7 @@ namespace SanctusFortis {
 		}
 
 		private void Shoot() {
-			float r = UnityEngine.Random.Range(0, 4);
+			float r = UnityEngine.Random.Range(0, 10);
 			if (r == 0) {
 				ShootLazer();
 			} else {
@@ -26,7 +26,7 @@ namespace SanctusFortis {
 
         private void ShootLazer()
         {
-            throw new NotImplementedException();
+            
         }
 
         private void ShootEyeBeam()

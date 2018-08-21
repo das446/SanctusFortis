@@ -10,8 +10,9 @@ namespace SanctusFortis {
 		public float speed=1;
 
 
-		public void GetHit(int damage) {
+		public virtual void GetHit(int damage) {
 			health -= damage;
+			Debug.Log("Hit");
 			if (health <= 0) {
 				Die();
 			}
