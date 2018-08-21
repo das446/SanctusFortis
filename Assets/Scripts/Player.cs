@@ -162,7 +162,6 @@ namespace SanctusFortis {
 
 		private bool Wall(float x) {
 
-			return false; //until I get it working
 
 			Vector2 dir = x > 0 ? Vector2.right : Vector2.left;
 
@@ -183,14 +182,23 @@ namespace SanctusFortis {
 				rb.AddForce(Vector2.up * jumpForce * g, ForceMode2D.Impulse);
 				Debug.Log("Jump");
 			}
+
 			float relativeY = rb.velocity.y * g;
 
-			Debug.Log(relativeY);
+			if (relativeY > jumpForce) {
+				Debug.Log(relativeY);
+				Vector2 v = rb.velocity;
+				v.y = jumpForce * g;
+				rb.velocity = v;
+			}
 
-			if (relativeY < 0) {
+			//Debug.Log(relativeY);
+			float apex = 0;
+
+			if (relativeY < apex) {
 				rb.gravityScale = fallMultiplier * g;
 
-			} else if (relativeY > 0 && !holdJump) {
+			} else if (relativeY > apex && !holdJump) {
 				rb.gravityScale = lowJumpMultiplier * g;
 
 			} else {

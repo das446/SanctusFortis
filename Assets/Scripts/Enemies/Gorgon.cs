@@ -11,6 +11,7 @@ namespace SanctusFortis {
 		public EnemyProjectile projectile;
 
 		private void Start() {
+			base.Start();
 			this.InvokeRepeatingWhile(Shoot, 5, () => true);
 		}
 

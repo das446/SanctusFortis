@@ -6,6 +6,7 @@ namespace SanctusFortis {
 	public class Harpy : Enemy {
 
 		void Start() {
+			base.Start();
 			StartCoroutine(Dive());
 
 		}

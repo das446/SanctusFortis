@@ -10,9 +10,9 @@ namespace SanctusFortis {
 		public GameObject head1, head2, head3;
 		public EnemyProjectile projectile;
 		float shootTime = 1;
-		bool invincible = false;
 
 		void Start() {
+			base.Start();
 			startHealth = health;
 			StartCoroutine(Shoot());
 		}
@@ -26,25 +26,17 @@ namespace SanctusFortis {
 		}
 
 		public override void GetHit(int amnt) {
-			if (!invincible) {
-				base.GetHit(amnt);
+			base.GetHit(amnt);
 
-				if (health < 66 && health > 30) {
-					Destroy(head1);
-					head1 = null;
-					shootTime = shootTime * 2 / 3;
-				}
-				if (health < 30) {
-					Destroy(head2);
-					head2 = null;
-					shootTime = shootTime * 2 / 3;
-				}
-				//CHangeColor
-				this.DoAfterTime(() => {
-					invincible = false;
-					//ChangeColor
-				}, 3);
+			if (health < 66 && health > 30) {
+				head1.SetActive(false);
+				shootTime = shootTime * 2 / 3;
 			}
+			if (health < 30) {
+				head2.SetActive(false);
+				shootTime = shootTime * 2 / 3;
+			}
+
 		}
 
 		IEnumerator Shoot() {
