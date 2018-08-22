@@ -1,12 +1,12 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
-namespace SanctusFortis {
+namespace SanctusFortis
+{
 
-	[RequireComponent(typeof(Rigidbody2D))]
+    [RequireComponent(typeof(Rigidbody2D))]
 	public class Player : MonoBehaviour {
 
 		public Rigidbody2D rb;
@@ -28,7 +28,7 @@ namespace SanctusFortis {
 		public BoxCollider2D col;
 
 		public bool vulnerable = true;
-		float flashTime = 0.125f;
+		float flashTime = 0.25f;
 		public Image healthBar;
 
 		public Animator anim;
@@ -68,8 +68,8 @@ namespace SanctusFortis {
 
 			Move();
 
-			pressJump = Input.GetKeyDown(KeyCode.UpArrow);
-			holdJump = Input.GetKey(KeyCode.UpArrow);
+			pressJump = Input.GetKeyDown(KeyCode.UpArrow)||Input.GetKeyDown(KeyCode.Space);
+			holdJump = Input.GetKey(KeyCode.UpArrow)||Input.GetKeyDown(KeyCode.Space);
 
 			if (Input.GetKeyDown(KeyCode.X)) {
 				FlipGravity();
@@ -199,7 +199,7 @@ namespace SanctusFortis {
 			}
 
 			//Debug.Log(relativeY);
-			float apex = 0;
+			float apex = 5;
 
 			if (relativeY < apex) {
 				rb.gravityScale = fallMultiplier * g;
@@ -222,7 +222,7 @@ namespace SanctusFortis {
 		}
 
 		private void Die() {
-			Destroy(gameObject);
+			SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
 		}
 
 		public void TakeDamage(int amnt) {

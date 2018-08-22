@@ -11,7 +11,10 @@ namespace SanctusFortis {
 		public float speed = 1;
 		bool vulnerable = true;
 		public SpriteRenderer[] sr;
-		float flashTime = 0.125f;
+
+		[Header("Hit Flash")]
+		public float flashTime = 0.125f;
+		public int flashAmnt = 2;
 
 		protected void Start() {
 			var s1 = GetComponent<SpriteRenderer>();
@@ -30,6 +33,7 @@ namespace SanctusFortis {
 		}
 
 		protected void Die() {
+			Player.player.Heal(10);
 			Destroy(gameObject);
 		}
 
