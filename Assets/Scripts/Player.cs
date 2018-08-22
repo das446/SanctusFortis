@@ -27,15 +27,20 @@ namespace SanctusFortis {
 		public static Player player;
 		public BoxCollider2D col;
 
+		public bool vulnerable = true;
+		float flashTime = 0.125f;
+		public Image healthBar;
+
 		public Animator anim;
 
 		bool pressJump;
 		bool holdJump;
 
 		void Start() {
-			this.InvokeRepeatingWhile(RepeatHeal, 1, () => health > 0);
+			this.InvokeRepeatingWhile(RepeatHeal, 1, () => health >= 0);
 			player = this;
 			col = GetComponent<BoxCollider2D>();
+			health = maxHealth;
 
 		}
 
@@ -51,6 +56,7 @@ namespace SanctusFortis {
 			if (health > maxHealth) {
 				health = maxHealth;
 			}
+			UpdateHealthBar();
 		}
 
 		void Update() {
@@ -102,6 +108,7 @@ namespace SanctusFortis {
 		bool PayHealth(int v) {
 			if (health > v) {
 				health -= v;
+				UpdateHealthBar();
 				return true;
 			} else {
 				//this.StopCaller();
@@ -162,7 +169,6 @@ namespace SanctusFortis {
 
 		private bool Wall(float x) {
 
-
 			Vector2 dir = x > 0 ? Vector2.right : Vector2.left;
 
 			return Physics2D.BoxCast(transform.position, col.size, 0, dir, 0.5f, 1 << 9);
@@ -208,6 +214,7 @@ namespace SanctusFortis {
 
 		public void LoseHealth(int v) {
 			health -= v;
+			UpdateHealthBar();
 			if (health <= 0) {
 				Die();
 			}
@@ -219,10 +226,30 @@ namespace SanctusFortis {
 		}
 
 		public void TakeDamage(int amnt) {
+			if (!vulnerable) { return; }
 			health -= amnt;
 			if (health <= 0) {
 				Die();
 			}
+			UpdateHealthBar();
+			StartCoroutine(Flash());
+		}
+
+		void UpdateHealthBar(){
+			float f = (float)health/(float)maxHealth;
+			healthBar.fillAmount = f;
+		}
+
+		IEnumerator Flash() {
+			vulnerable = false;
+			for (int i = 0; i < 2; i++) {
+				sr.enabled = false;
+
+				yield return new WaitForSeconds(flashTime);
+				sr.enabled = true;
+				yield return new WaitForSeconds(flashTime);
+			}
+			vulnerable = true;
 		}
 	}
 }
