@@ -26,6 +26,7 @@ namespace SanctusFortis
 		public SpriteRenderer sprite;
 		public static Player player;
 		public BoxCollider2D col;
+		public float swordLength = 2;
 
 		public bool vulnerable = true;
 		float flashTime = 0.25f;
@@ -118,7 +119,9 @@ namespace SanctusFortis
 
 		void SwordAttack() {
 			if (sword.gameObject.activeSelf) { return; }
-			sword.Use();
+			RaycastHit2D hit = Physics2D.Raycast(transform.position, transform.right,swordLength,1<<11);
+			hit.collider?.gameObject?.GetComponent<Enemy>()?.GetHit(10);
+			anim.SetTrigger("Attack");
 
 		}
 		void ThrowProjectile() {
