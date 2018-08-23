@@ -30,7 +30,7 @@ public class MenuManager : MonoBehaviour {
         //Placeholder name for next scene - Supposed to load up the controls menu
         //SceneManager.LoadScene("Controls Menu"); 
         //Assuming it wont be in the same scene
-        SceneManager.LoadScene("SampleScene", LoadSceneMode.Single); ;
+        SceneManager.LoadScene(1); ;
     }
 
 }

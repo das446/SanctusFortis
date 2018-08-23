@@ -21,7 +21,6 @@ namespace SanctusFortis {
 			if (Target.x > transform.position.x) {
 
 				theta = -(180 - theta);
-				Debug.Log("Flip");
 			}
 
 			transform.eulerAngles = new Vector3(0, 0, theta);

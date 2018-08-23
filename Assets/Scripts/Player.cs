@@ -17,7 +17,7 @@ namespace SanctusFortis
 		public int health;
 		public int maxHealth;
 		public SpriteRenderer sr;
-		public GameObject projectile;
+		public PlayerProjectile projectile;
 		public bool flipped = false;
 		public Sword sword;
 		public Sprite HealthBar;
@@ -78,6 +78,9 @@ namespace SanctusFortis
 
 			if (Input.GetKeyDown(KeyCode.C)) {
 				SwordAttack();
+			}
+			if (Input.GetKeyDown(KeyCode.V)) {
+				ThrowProjectile();
 			}
 		}
 
@@ -189,7 +192,6 @@ namespace SanctusFortis
 
 				Vector3 v = rb.velocity;
 				rb.AddForce(Vector2.up * jumpForce * g, ForceMode2D.Impulse);
-				Debug.Log("Jump");
 			}
 
 			float relativeY = rb.velocity.y * g;
