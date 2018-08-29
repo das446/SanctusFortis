@@ -26,6 +26,7 @@ namespace SanctusFortis {
 		public SpriteRenderer sprite;
 		public static Player player;
 		public BoxCollider2D col;
+        public float apex;
 
 		public Animator anim;
 
@@ -177,7 +178,6 @@ namespace SanctusFortis {
 			int g = flipped? - 1 : 1;
 
 			if (pressJump && CanJump()) {
-
 				Vector3 v = rb.velocity;
 				rb.AddForce(Vector2.up * jumpForce * g, ForceMode2D.Impulse);
 				Debug.Log("Jump");
@@ -193,7 +193,6 @@ namespace SanctusFortis {
 			}
 
 			//Debug.Log(relativeY);
-			float apex = 0;
 
 			if (relativeY < apex) {
 				rb.gravityScale = fallMultiplier * g;

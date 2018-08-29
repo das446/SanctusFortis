@@ -2598,7 +2598,7 @@ MonoBehaviour:
   rb: {fileID: 1701491685}
   speed: 6
   jumpForce: 11
-  fallMultiplier: 3.5
+  fallMultiplier: 5
   lowJumpMultiplier: 5
   health: 100
   maxHealth: 100
@@ -2610,6 +2610,7 @@ MonoBehaviour:
   HealthText: {fileID: 0}
   sprite: {fileID: 1701491686}
   col: {fileID: 0}
+  apex: 5
   anim: {fileID: 1701491688}
 --- !u!50 &1701491685
 Rigidbody2D:
