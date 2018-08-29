@@ -2034,7 +2034,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 597132828}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 67.33022, y: 27.749596, z: -0.92024684}
+  m_LocalPosition: {x: 67.33022, y: 46.4, z: -0.92024684}
   m_LocalScale: {x: 158.19215, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 988241135}
@@ -5042,6 +5042,7 @@ MonoBehaviour:
   HealthText: {fileID: 0}
   sprite: {fileID: 1701491686}
   col: {fileID: 0}
+  apex: 0
   anim: {fileID: 0}
 --- !u!50 &1701491685
 Rigidbody2D:
