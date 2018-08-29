@@ -3,10 +3,9 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
-namespace SanctusFortis
-{
+namespace SanctusFortis {
 
-    [RequireComponent(typeof(Rigidbody2D))]
+	[RequireComponent(typeof(Rigidbody2D))]
 	public class Player : MonoBehaviour {
 
 		public Rigidbody2D rb;
@@ -37,6 +36,8 @@ namespace SanctusFortis
 
 		bool pressJump;
 		bool holdJump;
+
+		public DeathAnim deathAnim;
 
 		void Start() {
 			this.InvokeRepeatingWhile(RepeatHeal, 1, () => health >= 0);
@@ -70,8 +71,8 @@ namespace SanctusFortis
 
 			Move();
 
-			pressJump = Input.GetKeyDown(KeyCode.UpArrow)||Input.GetKeyDown(KeyCode.Space);
-			holdJump = Input.GetKey(KeyCode.UpArrow)||Input.GetKeyDown(KeyCode.Space);
+			pressJump = Input.GetKeyDown(KeyCode.UpArrow) || Input.GetKeyDown(KeyCode.Space);
+			holdJump = Input.GetKey(KeyCode.UpArrow) || Input.GetKeyDown(KeyCode.Space);
 
 			if (Input.GetKeyDown(KeyCode.X)) {
 				FlipGravity();
@@ -123,9 +124,10 @@ namespace SanctusFortis
 
 		void SwordAttack() {
 			if (sword.gameObject.activeSelf) { return; }
-			RaycastHit2D hit = Physics2D.Raycast(transform.position, transform.right,swordLength,1<<11);
+			sword.Use();
+			RaycastHit2D hit = Physics2D.Raycast(transform.position, transform.right, swordLength, 1 << 11);
 			hit.collider?.gameObject?.GetComponent<Enemy>()?.GetHit(10);
-			anim.SetTrigger("Attack");
+			//anim.SetTrigger("Attack");
 
 		}
 		void ThrowProjectile() {
@@ -164,7 +166,7 @@ namespace SanctusFortis
 				Vector2 v = rb.velocity;
 				v.x = Vector2.right.x * x * speed;
 				rb.velocity = v;
-				if(Grounded()){
+				if (Grounded()) {
 					anim.SetFloat("Speed", x);
 				}
 			}
@@ -207,7 +209,6 @@ namespace SanctusFortis
 			}
 
 			//Debug.Log(relativeY);
-			
 
 			if (relativeY < apex) {
 				rb.gravityScale = fallMultiplier * g;
@@ -230,7 +231,9 @@ namespace SanctusFortis
 		}
 
 		private void Die() {
-			SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+			Instantiate(deathAnim, transform.position, transform.rotation);
+			gameObject.SetActive(false);
+
 		}
 
 		public void TakeDamage(int amnt) {
@@ -240,11 +243,13 @@ namespace SanctusFortis
 				Die();
 			}
 			UpdateHealthBar();
-			StartCoroutine(Flash());
+			if (gameObject.activeSelf) {
+				StartCoroutine(Flash());
+			}
 		}
 
-		void UpdateHealthBar(){
-			float f = (float)health/(float)maxHealth;
+		void UpdateHealthBar() {
+			float f = (float) health / (float) maxHealth;
 			healthBar.fillAmount = f;
 		}
 
