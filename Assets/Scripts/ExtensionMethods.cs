@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Diagnostics;
 using UnityEngine;
+using System.Linq;
 using Debug = UnityEngine.Debug;
 
 namespace SanctusFortis {
@@ -26,9 +27,8 @@ namespace SanctusFortis {
 			control.StartCoroutine(MakeInvokedCoroutineRepeating(coroutine, time, cond));
 		}
 
-		public static void DoXTimes(this MonoBehaviour m,Action f, int amnt){
-			for (int i = 0; i < amnt; i++)
-			{
+		public static void DoXTimes(this MonoBehaviour m, Action f, int amnt) {
+			for (int i = 0; i < amnt; i++) {
 				f();
 			}
 		}
@@ -70,11 +70,31 @@ namespace SanctusFortis {
 
 		}
 
-		public static Vector3 setY(this Vector3 v, float Y)
-    {
-        
-        return new Vector3(v.x, Y,v.z);
-    }
+		public static Vector3 setY(this Vector3 v, float Y) {
+
+			return new Vector3(v.x, Y, v.z);
+		}
+
+		public static T RandomItem<T>(this List<T> list, Predicate<T> condition) {
+			List<T> temp = list.FindAll(condition);
+			if (temp.Count == 0) { return default(T); }
+			return temp[UnityEngine.Random.Range(0, list.Count)];
+
+		}
+		public static T RandomItem<T>(this List<T> list) {
+			return list[UnityEngine.Random.Range(0, list.Count)];
+
+		}
+		public static T RandomItem<T>(this T[] array) {
+			return array[UnityEngine.Random.Range(0, array.Length)];
+
+		}
+		public static T RandomItem<T>(this T[] array, Predicate<T> condition) {
+			List<T> temp = array.ToList().FindAll(condition);
+			if (temp.Count == 0) { return default(T); }
+			return temp[UnityEngine.Random.Range(0, array.Length)];
+
+		}
 
 	}
 

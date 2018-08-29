@@ -1,7 +1,6 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 namespace SanctusFortis {
@@ -14,10 +13,11 @@ namespace SanctusFortis {
 		public float jumpForce;
 		public float fallMultiplier = 2.5f;
 		public float lowJumpMultiplier = 2;
+		public float apex = 5;
 		public int health;
 		public int maxHealth;
 		public SpriteRenderer sr;
-		public GameObject projectile;
+		public PlayerProjectile projectile;
 		public bool flipped = false;
 		public Sword sword;
 		public Sprite HealthBar;
@@ -26,16 +26,24 @@ namespace SanctusFortis {
 		public SpriteRenderer sprite;
 		public static Player player;
 		public BoxCollider2D col;
+		public float swordLength = 2;
+
+		public bool vulnerable = true;
+		float flashTime = 0.25f;
+		public Image healthBar;
 
 		public Animator anim;
 
 		bool pressJump;
 		bool holdJump;
 
+		public DeathAnim deathAnim;
+
 		void Start() {
-			this.InvokeRepeatingWhile(RepeatHeal, 1, () => health > 0);
+			this.InvokeRepeatingWhile(RepeatHeal, 1, () => health >= 0);
 			player = this;
 			col = GetComponent<BoxCollider2D>();
+			health = maxHealth;
 
 		}
 
@@ -51,6 +59,7 @@ namespace SanctusFortis {
 			if (health > maxHealth) {
 				health = maxHealth;
 			}
+			UpdateHealthBar();
 		}
 
 		void Update() {
@@ -62,8 +71,8 @@ namespace SanctusFortis {
 
 			Move();
 
-			pressJump = Input.GetKeyDown(KeyCode.UpArrow);
-			holdJump = Input.GetKey(KeyCode.UpArrow);
+			pressJump = Input.GetKeyDown(KeyCode.UpArrow) || Input.GetKeyDown(KeyCode.Space);
+			holdJump = Input.GetKey(KeyCode.UpArrow) || Input.GetKeyDown(KeyCode.Space);
 
 			if (Input.GetKeyDown(KeyCode.X)) {
 				FlipGravity();
@@ -71,6 +80,9 @@ namespace SanctusFortis {
 
 			if (Input.GetKeyDown(KeyCode.C)) {
 				SwordAttack();
+			}
+			if (Input.GetKeyDown(KeyCode.V)) {
+				ThrowProjectile();
 			}
 		}
 
@@ -102,6 +114,7 @@ namespace SanctusFortis {
 		bool PayHealth(int v) {
 			if (health > v) {
 				health -= v;
+				UpdateHealthBar();
 				return true;
 			} else {
 				//this.StopCaller();
@@ -112,6 +125,9 @@ namespace SanctusFortis {
 		void SwordAttack() {
 			if (sword.gameObject.activeSelf) { return; }
 			sword.Use();
+			RaycastHit2D hit = Physics2D.Raycast(transform.position, transform.right, swordLength, 1 << 11);
+			hit.collider?.gameObject?.GetComponent<Enemy>()?.GetHit(10);
+			//anim.SetTrigger("Attack");
 
 		}
 		void ThrowProjectile() {
@@ -136,7 +152,7 @@ namespace SanctusFortis {
 			sprite.color = Color.white;
 		}
 
-		public bool CanJump() {
+		public bool Grounded() {
 			return Physics2D.Raycast(transform.position, -transform.up, 0.75f, 1 << 9);
 		}
 
@@ -150,7 +166,9 @@ namespace SanctusFortis {
 				Vector2 v = rb.velocity;
 				v.x = Vector2.right.x * x * speed;
 				rb.velocity = v;
-				anim.SetFloat("Speed", x);
+				if (Grounded()) {
+					anim.SetFloat("Speed", x);
+				}
 			}
 			if (x != 0) {
 				Vector3 r = transform.eulerAngles;
@@ -161,7 +179,6 @@ namespace SanctusFortis {
 		}
 
 		private bool Wall(float x) {
-
 
 			Vector2 dir = x > 0 ? Vector2.right : Vector2.left;
 
@@ -176,11 +193,10 @@ namespace SanctusFortis {
 
 			int g = flipped? - 1 : 1;
 
-			if (pressJump && CanJump()) {
+			if (pressJump && Grounded()) {
 
 				Vector3 v = rb.velocity;
 				rb.AddForce(Vector2.up * jumpForce * g, ForceMode2D.Impulse);
-				Debug.Log("Jump");
 			}
 
 			float relativeY = rb.velocity.y * g;
@@ -193,7 +209,6 @@ namespace SanctusFortis {
 			}
 
 			//Debug.Log(relativeY);
-			float apex = 0;
 
 			if (relativeY < apex) {
 				rb.gravityScale = fallMultiplier * g;
@@ -208,6 +223,7 @@ namespace SanctusFortis {
 
 		public void LoseHealth(int v) {
 			health -= v;
+			UpdateHealthBar();
 			if (health <= 0) {
 				Die();
 			}
@@ -215,14 +231,38 @@ namespace SanctusFortis {
 		}
 
 		private void Die() {
-			Destroy(gameObject);
+			Instantiate(deathAnim, transform.position, transform.rotation);
+			gameObject.SetActive(false);
+
 		}
 
 		public void TakeDamage(int amnt) {
+			if (!vulnerable) { return; }
 			health -= amnt;
 			if (health <= 0) {
 				Die();
 			}
+			UpdateHealthBar();
+			if (gameObject.activeSelf) {
+				StartCoroutine(Flash());
+			}
+		}
+
+		void UpdateHealthBar() {
+			float f = (float) health / (float) maxHealth;
+			healthBar.fillAmount = f;
+		}
+
+		IEnumerator Flash() {
+			vulnerable = false;
+			for (int i = 0; i < 2; i++) {
+				sr.enabled = false;
+
+				yield return new WaitForSeconds(flashTime);
+				sr.enabled = true;
+				yield return new WaitForSeconds(flashTime);
+			}
+			vulnerable = true;
 		}
 	}
 }

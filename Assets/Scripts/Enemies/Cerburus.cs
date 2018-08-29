@@ -11,6 +11,8 @@ namespace SanctusFortis {
 		public EnemyProjectile projectile;
 		float shootTime = 1;
 
+		public FirePlatform[] platforms;
+
 		void Start() {
 			base.Start();
 			startHealth = health;
@@ -18,6 +20,11 @@ namespace SanctusFortis {
 		}
 
 		void Update() {
+			if (Player.player.transform.position.x > transform.position.x) {
+				transform.eulerAngles = new Vector3(0, 180, 0);
+			} else {
+				transform.eulerAngles = Vector3.zero;
+			}
 			Move();
 		}
 
@@ -28,15 +35,24 @@ namespace SanctusFortis {
 		public override void GetHit(int amnt) {
 			base.GetHit(amnt);
 
-			if (health < 66 && health > 30) {
+			if (health < 130 && health > 60 && head1.activeSelf) {
 				head1.SetActive(false);
 				shootTime = shootTime * 2 / 3;
+				StartCoroutine(FirePlatforms());
 			}
-			if (health < 30) {
+			if (health < 60 && head2.activeSelf) {
 				head2.SetActive(false);
 				shootTime = shootTime * 2 / 3;
 			}
 
+		}
+
+		private IEnumerator FirePlatforms() {
+			while (health > 0) {
+				FirePlatform fp = platforms.RandomItem();
+				StartCoroutine(fp.TurnOn(6, 2));
+				yield return new WaitForSeconds(8);
+			}
 		}
 
 		IEnumerator Shoot() {
