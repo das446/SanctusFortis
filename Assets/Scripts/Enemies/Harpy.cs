@@ -19,9 +19,10 @@ namespace SanctusFortis {
 			while (true) {
 				
 				yield return new WaitForSeconds(10);
-				float time = 4;
+				
 				Vector3 target = Player.player.transform.position;
 				Vector3 dir = transform.position - target;
+				float time = Mathf.Sqrt(Vector2.Distance(transform.position,target));
 				dir = dir.normalized*speed;
 				while (time > 0) {
 					transform.position-=dir*Time.deltaTime;

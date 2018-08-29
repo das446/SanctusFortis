@@ -14,6 +14,7 @@ namespace SanctusFortis
 		public float jumpForce;
 		public float fallMultiplier = 2.5f;
 		public float lowJumpMultiplier = 2;
+		public float apex = 5;
 		public int health;
 		public int maxHealth;
 		public SpriteRenderer sr;
@@ -149,7 +150,7 @@ namespace SanctusFortis
 			sprite.color = Color.white;
 		}
 
-		public bool CanJump() {
+		public bool Grounded() {
 			return Physics2D.Raycast(transform.position, -transform.up, 0.75f, 1 << 9);
 		}
 
@@ -163,7 +164,9 @@ namespace SanctusFortis
 				Vector2 v = rb.velocity;
 				v.x = Vector2.right.x * x * speed;
 				rb.velocity = v;
-				anim.SetFloat("Speed", x);
+				if(Grounded()){
+					anim.SetFloat("Speed", x);
+				}
 			}
 			if (x != 0) {
 				Vector3 r = transform.eulerAngles;
@@ -188,7 +191,7 @@ namespace SanctusFortis
 
 			int g = flipped? - 1 : 1;
 
-			if (pressJump && CanJump()) {
+			if (pressJump && Grounded()) {
 
 				Vector3 v = rb.velocity;
 				rb.AddForce(Vector2.up * jumpForce * g, ForceMode2D.Impulse);
@@ -204,7 +207,7 @@ namespace SanctusFortis
 			}
 
 			//Debug.Log(relativeY);
-			float apex = 5;
+			
 
 			if (relativeY < apex) {
 				rb.gravityScale = fallMultiplier * g;
