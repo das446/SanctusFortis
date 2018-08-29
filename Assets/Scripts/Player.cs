@@ -71,30 +71,31 @@ namespace SanctusFortis
 
         void Update()
         {
-            if (Input.GetKeyDown(KeyCode.DownArrow))
+            if (Input.GetKeyDown(KeyCode.S))
             {
                 Shield();
             }
-            else if (Input.GetKeyUp(KeyCode.DownArrow) && shielding)
+            else if (Input.GetKeyUp(KeyCode.S) && shielding)
             {
                 StopShielding();
             }
 
             Move();
 
-            pressJump = Input.GetKeyDown(KeyCode.UpArrow) || Input.GetKeyDown(KeyCode.Space);
-            holdJump = Input.GetKey(KeyCode.UpArrow) || Input.GetKeyDown(KeyCode.Space);
+            pressJump = Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.Space);
+            holdJump = Input.GetKey(KeyCode.W) || Input.GetKeyDown(KeyCode.Space);
 
-            if (Input.GetKeyDown(KeyCode.X))
+            if (Input.GetKeyDown(KeyCode.P))
             {
                 FlipGravity();
             }
 
-            if (Input.GetKeyDown(KeyCode.C))
+            if (Input.GetKeyDown(KeyCode.I))
             {
                 SwordAttack();
             }
-            if (Input.GetKeyDown(KeyCode.V))
+
+            if (Input.GetKeyDown(KeyCode.O))
             {
                 ThrowProjectile();
             }

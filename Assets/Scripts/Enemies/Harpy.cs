@@ -6,6 +6,8 @@ using UnityEngine;
 namespace SanctusFortis {
 	public class Harpy : Enemy {
 
+        public float range=10;
+
 		SpriteRenderer s;
 		void Start() {
 			base.Start();
@@ -22,22 +24,24 @@ namespace SanctusFortis {
 
 		IEnumerator Dive() {
 			while (true) {
-				
+                
 				yield return new WaitForSeconds(UnityEngine.Random.Range(8,10));
-				
-				Vector3 target = Player.player.transform.position;
-				Vector3 dir = transform.position - target;
+                if (Vector2.Distance(transform.position, Player.player.transform.position) <= range)
+                {
+                    Vector3 target = Player.player.transform.position;
+                    Vector3 dir = transform.position - target;
 
-				LookAtPlayer();
+                    LookAtPlayer();
 
-				float time = 5;
-				dir = dir.normalized*speed;
-				while (time > 0) {
-					transform.position-=dir*Time.deltaTime;
-					time -= Time.deltaTime;
-					yield return new WaitForEndOfFrame();
-				}
-				
+                    float time = 5;
+                    dir = dir.normalized * speed;
+                    while (time > 0)
+                    {
+                        transform.position -= dir * Time.deltaTime;
+                        time -= Time.deltaTime;
+                        yield return new WaitForEndOfFrame();
+                    }
+                }
 				yield return null;
 			}
 			
