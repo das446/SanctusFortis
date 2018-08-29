@@ -35,12 +35,12 @@ namespace SanctusFortis {
 		public override void GetHit(int amnt) {
 			base.GetHit(amnt);
 
-			if (health < 66 && health > 30 && head1.activeSelf) {
+			if (health < 130 && health > 60 && head1.activeSelf) {
 				head1.SetActive(false);
 				shootTime = shootTime * 2 / 3;
 				StartCoroutine(FirePlatforms());
 			}
-			if (health < 30 && head2.activeSelf) {
+			if (health < 60 && head2.activeSelf) {
 				head2.SetActive(false);
 				shootTime = shootTime * 2 / 3;
 			}

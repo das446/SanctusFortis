@@ -23,7 +23,7 @@ GameObject:
   - component: {fileID: 95936537412654390}
   - component: {fileID: 114129821928241716}
   m_Layer: 0
-  m_Name: PlayerFull-Die_0
+  m_Name: PlayerDie
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
