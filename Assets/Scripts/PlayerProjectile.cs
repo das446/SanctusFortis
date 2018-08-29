@@ -10,8 +10,9 @@ namespace SanctusFortis {
 		}
 
 		void Update() {
-			Vector2 dir = transform.eulerAngles.y == 0 ? transform.right : -transform.right;
-			transform.Translate(dir * speed * Time.deltaTime);
+			Vector2 dir = transform.right;
+			Debug.Log(dir);
+			transform.Translate(dir * speed * Time.deltaTime,Space.World);
 		}
 
 		void OnCollisionEnter2D(Collision2D other) {
