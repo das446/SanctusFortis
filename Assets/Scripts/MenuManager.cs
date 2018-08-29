@@ -6,16 +6,16 @@ using UnityEngine.UI;
 
 public class MenuManager : MonoBehaviour {
 
-    public Button m_YourFirstButton, m_YourSecondButton;
+    public Button m_play, m_quit;
 
     void Start()
     {
-        Button btn1 = m_YourFirstButton.GetComponent<Button>();
-        Button btn2 = m_YourSecondButton.GetComponent<Button>();
+        Button playButton = m_play.GetComponent<Button>();
+        Button exitButton = m_quit.GetComponent<Button>();
 
         //Calls the TaskOnClick/TaskWithParameters method when you click the Button
-        btn1.onClick.AddListener(PlayGameButton);
-        btn2.onClick.AddListener(QuitGame);
+        playButton.onClick.AddListener(PlayGameButton);
+        exitButton.onClick.AddListener(QuitGame);
     }
 
 

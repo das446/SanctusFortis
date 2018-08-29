@@ -813,8 +813,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 851fa20444b96144db7903c251bb1751, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_YourFirstButton: {fileID: 0}
-  m_YourSecondButton: {fileID: 0}
+  m_play: {fileID: 1219530020}
+  m_quit: {fileID: 1583082683}
 --- !u!114 &985262027
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -983,8 +983,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 851fa20444b96144db7903c251bb1751, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_YourFirstButton: {fileID: 562540875}
-  m_YourSecondButton: {fileID: 1583082683}
+  m_play: {fileID: 0}
+  m_quit: {fileID: 0}
 --- !u!1 &1219530018
 GameObject:
   m_ObjectHideFlags: 0
@@ -1019,7 +1019,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 16, y: -372}
+  m_AnchoredPosition: {x: 14, y: -497}
   m_SizeDelta: {x: 360, y: 55.1}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1219530020
