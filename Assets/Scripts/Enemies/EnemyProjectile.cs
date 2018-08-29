@@ -33,13 +33,11 @@ namespace SanctusFortis {
 
 		void OnTriggerEnter2D(Collider2D other)
 		{
-			Debug.Log(other.gameObject);
 			other.GetComponent<Player>()?.TakeDamage(10);
 			Destroy(gameObject);
 		}
 
 		void OnCollisionEnter2D(Collision2D other) {
-			Debug.Log(other.gameObject);
 			other.gameObject.GetComponent<Player>()?.TakeDamage(10);
 			Destroy(gameObject);
 		}
