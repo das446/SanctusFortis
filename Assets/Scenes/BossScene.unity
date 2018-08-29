@@ -124,6 +124,7 @@ GameObject:
   - component: {fileID: 76373922}
   - component: {fileID: 76373924}
   - component: {fileID: 76373923}
+  - component: {fileID: 76373925}
   m_Layer: 9
   m_Name: brick_platform (4)
   m_TagString: Untagged
@@ -218,6 +219,17 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &76373925
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 76373921}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5d5d04844e42b2d4585ee09bd071eaee, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &138663450
 GameObject:
   m_ObjectHideFlags: 0
@@ -1259,6 +1271,7 @@ GameObject:
   - component: {fileID: 1059582298}
   - component: {fileID: 1059582300}
   - component: {fileID: 1059582299}
+  - component: {fileID: 1059582301}
   m_Layer: 9
   m_Name: brick_platform (6)
   m_TagString: Untagged
@@ -1353,6 +1366,17 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &1059582301
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1059582297}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5d5d04844e42b2d4585ee09bd071eaee, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1107820223
 GameObject:
   m_ObjectHideFlags: 0
@@ -1363,6 +1387,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1107820224}
   - component: {fileID: 1107820225}
+  - component: {fileID: 1107820226}
   m_Layer: 0
   m_Name: LogoSprite
   m_TagString: Untagged
@@ -1431,6 +1456,17 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &1107820226
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1107820223}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5d5d04844e42b2d4585ee09bd071eaee, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1265904350
 Prefab:
   m_ObjectHideFlags: 0
@@ -1644,12 +1680,9 @@ MonoBehaviour:
   projectile: {fileID: 114266022535892524, guid: c6cc67e065b190c48863bc7ff989191f,
     type: 2}
   platforms:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 76373925}
+  - {fileID: 1059582301}
+  - {fileID: 1596437570}
 --- !u!212 &1519123731
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1741,6 +1774,7 @@ GameObject:
   - component: {fileID: 1596437567}
   - component: {fileID: 1596437569}
   - component: {fileID: 1596437568}
+  - component: {fileID: 1596437570}
   m_Layer: 9
   m_Name: brick_platform (8)
   m_TagString: Untagged
@@ -1835,6 +1869,17 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &1596437570
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1596437566}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5d5d04844e42b2d4585ee09bd071eaee, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1607485768
 GameObject:
   m_ObjectHideFlags: 0
