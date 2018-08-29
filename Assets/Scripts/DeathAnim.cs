@@ -7,7 +7,7 @@ namespace SanctusFortis {
 	public class DeathAnim : MonoBehaviour {
 
 		void Start () {
-			Invoke("Reset",2);
+			Invoke("Reset",0.75f);
 			
 		}
 
