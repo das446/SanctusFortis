@@ -239,7 +239,6 @@ namespace SanctusFortis
 
             if (relativeY > jumpForce)
             {
-                Debug.Log(relativeY);
                 Vector2 v = rb.velocity;
                 v.y = jumpForce * g;
                 rb.velocity = v;
