@@ -23,7 +23,7 @@ GameObject:
   - component: {fileID: 114266022535892524}
   - component: {fileID: 61360262644578154}
   m_Layer: 11
-  m_Name: Fire
+  m_Name: Fire 1
   m_TagString: EnemyProjectile
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
