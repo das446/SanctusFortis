@@ -1,9 +1,13 @@
 fileFormatVersion: 2
-guid: 47610f36ecbc81146904050e0fd0c678
+guid: 5864d8cd1136177458131c82f67b84b7
 TextureImporter:
   fileIDToRecycleName:
-    21300000: Gorgon Base_0
-    21300002: Gorgon Base_1
+    21300000: cerberus body sprite sheet_0
+    21300002: cerberus body sprite sheet_1
+    21300004: cerberus body sprite sheet_2
+    21300006: cerberus body sprite sheet_3
+    21300008: cerberus body sprite sheet_4
+    21300010: cerberus body sprite sheet_5
   externalObjects: {}
   serializedVersion: 7
   mipmaps:
@@ -48,7 +52,7 @@ TextureImporter:
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
   spritePixelsToUnits: 64
-  spriteBorder: {x: 9, y: 35, z: 4, w: 18}
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
   alphaIsTransparency: 1
@@ -97,13 +101,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Gorgon Base_0
+      name: cerberus body sprite sheet_0
       rect:
         serializedVersion: 2
-        x: 10
-        y: 37
-        width: 49
-        height: 73
+        x: 0
+        y: 0
+        width: 480
+        height: 1080
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -111,19 +115,19 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 0f192bbee678a68408bc8ee7e0c9d087
+      spriteID: d1cb9c44dd4ceb84dbabb0dd0fbc203d
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Gorgon Base_1
+      name: cerberus body sprite sheet_1
       rect:
         serializedVersion: 2
-        x: 74
-        y: 37
-        width: 49
-        height: 73
+        x: 480
+        y: 0
+        width: 480
+        height: 1080
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -131,7 +135,47 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 792b1138e8d4170458d27ec1045146fa
+      spriteID: d01a8872fc841cd41aceb3a3253ed697
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: cerberus body sprite sheet_2
+      rect:
+        serializedVersion: 2
+        x: 960
+        y: 0
+        width: 480
+        height: 1080
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c00b4178b690f78438fe02c6bdc3285a
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: cerberus body sprite sheet_3
+      rect:
+        serializedVersion: 2
+        x: 1440
+        y: 0
+        width: 480
+        height: 1080
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 555e2214875c5654f8e7adcb886ed4a5
       vertices: []
       indices: 
       edges: []

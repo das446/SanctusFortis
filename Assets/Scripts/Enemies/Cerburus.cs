@@ -13,7 +13,6 @@ namespace SanctusFortis {
 
 		public FirePlatform[] platforms;
 
-
 		void Start() {
 			base.Start();
 			startHealth = health;
@@ -21,6 +20,11 @@ namespace SanctusFortis {
 		}
 
 		void Update() {
+			if (Player.player.transform.position.x > transform.position.x) {
+				transform.eulerAngles = new Vector3(0, 180, 0);
+			} else {
+				transform.eulerAngles = Vector3.zero;
+			}
 			Move();
 		}
 
@@ -43,16 +47,15 @@ namespace SanctusFortis {
 
 		}
 
-        private IEnumerator FirePlatforms()
-        {
-           while(health>0){
-			   FirePlatform fp = platforms.RandomItem();
-			   StartCoroutine(fp.TurnOn(6,2));
-			   yield return new WaitForSeconds(8);
-		   }
-        }
+		private IEnumerator FirePlatforms() {
+			while (health > 0) {
+				FirePlatform fp = platforms.RandomItem();
+				StartCoroutine(fp.TurnOn(6, 2));
+				yield return new WaitForSeconds(8);
+			}
+		}
 
-        IEnumerator Shoot() {
+		IEnumerator Shoot() {
 			while (true) {
 				Instantiate(projectile, head3.transform.position, Quaternion.identity);
 				yield return new WaitForSeconds(shootTime);

@@ -24,7 +24,6 @@ namespace SanctusFortis {
 		}
 
 		void OnTriggerEnter2D(Collider2D other) {
-			Debug.Log(other);
 			Enemy e = other.GetComponent<Enemy>();
 			if (e != null) {
 				e.GetHit(8);

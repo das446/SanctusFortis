@@ -41,7 +41,7 @@ namespace SanctusFortis {
 		}
 
 		private void FixedUpdate() {
-			if (pressingJump && player.CanJump()) {
+			if (pressingJump && player.Grounded()) {
 				player.rb.velocity = new Vector2 (player.rb.velocity.x, jumpForce);
                 stoppedJumping = false;
 			}

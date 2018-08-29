@@ -24,6 +24,7 @@ GameObject:
   - component: {fileID: 61628498624760712}
   - component: {fileID: 50617140628718894}
   - component: {fileID: 114683626466412802}
+  - component: {fileID: 95809002549502048}
   m_Layer: 11
   m_Name: Gorgon
   m_TagString: Untagged
@@ -76,19 +77,37 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: 0.10450935, y: 0.0047154427}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1, y: 2}
-    newSize: {x: 0.32, y: 0.32}
+    oldSize: {x: 0.765625, y: 1.140625}
+    newSize: {x: 0.765625, y: 1.140625}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 0.55210304, y: 1.199317}
   m_EdgeRadius: 0
+--- !u!95 &95809002549502048
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1724341252008304}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 32571ca9b0b9e37408f034e24d5187f4, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!114 &114201631633387056
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -114,7 +133,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 10
-  speed: 3
+  speed: 2.5
   sr: []
   flashTime: 0.125
   flashAmnt: 2
@@ -160,7 +179,7 @@ SpriteRenderer:
   m_FlipX: 1
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 0.32, y: 0.32}
+  m_Size: {x: 0.765625, y: 1.140625}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1

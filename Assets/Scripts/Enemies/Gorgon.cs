@@ -50,7 +50,7 @@ namespace SanctusFortis {
 				dir = Vector2.right;
 			}
 
-			bool floor = Physics2D.Raycast(transform.position + dir, Vector2.down, 1, 1 << 9);
+			bool floor = Physics2D.Raycast(transform.position + dir, Vector2.down, 0.7f, 1 << 9);
 			if (floor) {
 				transform.Translate(dir * speed * Time.deltaTime, Space.World);
 			}

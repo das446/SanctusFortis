@@ -53,6 +53,7 @@ namespace SanctusFortis {
 			}
 			vulnerable = true;
 		}
+		
 
 	}
 }
