@@ -32,7 +32,7 @@ namespace SanctusFortis {
 			}
 		}
 
-		protected void Die() {
+		protected virtual void Die() {
 			Player.player.Heal(10);
 			Destroy(gameObject);
 		}

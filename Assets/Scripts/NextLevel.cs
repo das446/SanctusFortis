@@ -12,7 +12,9 @@ public class NextLevel : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		
+        if(Input.GetKey(KeyCode.N)){
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+        }
 	}
 
     private void OnTriggerEnter2D(Collider2D collision)

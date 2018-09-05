@@ -47,6 +47,7 @@ namespace SanctusFortis
             player = this;
             col = GetComponent<BoxCollider2D>();
             health = maxHealth;
+           
 
         }
 
